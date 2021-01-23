@@ -1,0 +1,7 @@
+pandas 
+json
+matplotlib
+seaborn 
+streamlit
+wordcloud 
+warnings 
