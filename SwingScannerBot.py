@@ -108,42 +108,54 @@ def positionstable():
         
     df = pd.DataFrame.from_dict(newdict)
     return df
-
+@st.cache
 def wordcloud():
    
-    plt.style.use('fivethirtyeight')
-    warnings.filterwarnings('ignore')
+   
     with open("wordcloud.json", "r") as read_file:
         tickerdata = json.load(read_file)
     read_file.close()
+    
+    
     tickerkeys = list(tickerdata.keys())
     wc = WordCloud(background_color="white",width=5000,height=5000, max_words=len(tickerkeys),relative_scaling=0.5,min_font_size=5).generate_from_frequencies(tickerdata)
     plt.axis('off')
-    plt.show()
+    return wc
+    
+def date():
+    s = str(datetime.date.today())+".png" 
+    return s
+
 
 
 # In[61]:
 
 
-st.title('Top ticker bot- A Swing Trading Bot and Twitter Analyst')
-st.write('Hello!, this is where you can find information for toptickerbot, a swing trading bot that identifies accumulating stocks and provides financial twitter data')
+st.set_page_config( layout='wide')
+st.markdown("<h1 style='text-align: center; color: black;'>Top ticker bot- An Accumulation Scanning Bot and Social Media Analyst</h1>", unsafe_allow_html=True)
+st.write("Bot that looks for stocks showing accumulation or high explosive potential from price and volume patterns ")
+st.write("You can also find financial social media analytics")
 st.write("\n")
+st.markdown("<h1 style='text-align: center; color: black;'>Net Return: 43%</h1>", unsafe_allow_html=True)
+#st.title("Net Return: 43%")
 st.write("current holdings of the bot:")
 st.table(positionstable())
+st.write("returns for toptickerbot this week:")
+snsbar()
+st.pyplot(plt,width = 350)
 st.write("positions are updated daily. Follow @toptickerbot on Twitter to get alerts and future updates")
 st.write("\n")
 st.write("Returns for last week: 55%")
-st.image('2021-01-16 returns.png')
+st.image('2021-01-16 returns.png',width = 500)
 st.write("\n")
-st.write("Returns for this week will be shown here at the end of week")
-st.write("\n")
-st.title("twitter data analytics ")
-st.write("most talked about 50 S&P 500 tickers and some popular ones:")
-st.image('2021-01-22.png',width = 400)
-
-#st.write("Check out the returns for toptickerbot this week:")
-#snsbar()
-#st.pyplot(plt)
+col1, col2 =  st.beta_columns(2)
+with col1:
+    st.title("twitter data analytics ")
+    st.write("most talked about 50 S&P 500 tickers and some popular ones:")
+    st.image(wordcloud().to_array(),width = 350)
+with col2:
+    st.title("r/WallStreetBets Scanner")
+    st.write("coming soon")
 
 
 # In[ ]:
