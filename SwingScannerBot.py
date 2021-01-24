@@ -4,21 +4,17 @@
 # In[1]:
 
 
-import tweepy
-import webbrowser
-import time
+
+
+
 import pandas as pd
 import datetime
 from datetime import date,timedelta
-import schedule
-import requests
-import json
-import bs4 as bs
-import pickle
+
 import matplotlib.pyplot as plt
 import math
-import os
-from json.decoder import JSONDecodeError
+
+
 
 
 # In[54]:
@@ -27,7 +23,7 @@ from json.decoder import JSONDecodeError
 import seaborn as sns
 import streamlit as st
 from wordcloud import WordCloud
-import warnings 
+
 
 
 # In[28]:
