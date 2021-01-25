@@ -90,5 +90,9 @@
       "AMD": {
             "alertedprice": 92.115,
             "entrytime": "2021-01-22"
+      },
+      "DD": {
+            "alertedprice": 80.69,
+            "entrytime": "2021-01-25"
       }
 }
