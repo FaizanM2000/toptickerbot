@@ -148,10 +148,11 @@ col1, col2 =  st.beta_columns(2)
 with col1:
     st.title("twitter data analytics ")
     st.write("most talked about 50 S&P 500 tickers and some popular ones:")
-    st.image(wordcloud().to_array(),width = 350)
+    st.image(wordcloud().to_array(),width = 400)
 with col2:
     st.title("r/WallStreetBets Scanner")
-    st.write("coming soon")
+    st.write("Popularity distribution of popular stocks:")
+    st.image('2021-01-26wsb.png', width = 400)
 
 
 # In[ ]:
