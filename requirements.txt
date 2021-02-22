@@ -3,4 +3,6 @@ matplotlib
 seaborn 
 streamlit
 wordcloud 
- 
+psycopg2
+configparser
+yfinance  
