@@ -5,4 +5,5 @@ streamlit
 wordcloud 
 psycopg2
 configparser
-yfinance  
+yfinance 
+psycopg2-binary
