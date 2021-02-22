@@ -1,0 +1,38 @@
+{
+      "KO": {
+            "alertedprice": 50.29,
+            "entrytime": "2021-01-13"
+      },
+      "T": {
+            "alertedprice": 29.14,
+            "entrytime": "2021-01-15"
+      },
+      "C": {
+            "alertedprice": 63.71,
+            "entrytime": "2021-01-19"
+      },
+      "HAL": {
+            "alertedprice": 20.54,
+            "entrytime": "2021-01-19"
+      },
+      "KMI": {
+            "alertedprice": 15.17,
+            "entrytime": "2021-01-26"
+      },
+      "BMY": {
+            "alertedprice": 62.29,
+            "entrytime": "2021-01-28"
+      },
+      "F": {
+            "alertedprice": 11.53,
+            "entrytime": "2021-02-16"
+      },
+      "BAC": {
+            "alertedprice": 34.42,
+            "entrytime": "2021-02-17"
+      },
+      "AAPL": {
+            "alertedprice": 129.815,
+            "entrytime": "2021-02-19"
+      }
+}
