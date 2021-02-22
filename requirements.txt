@@ -3,7 +3,7 @@ matplotlib
 seaborn 
 streamlit
 wordcloud 
-psycopg2
+psycopg2-binary
 configparser
 yfinance 
-psycopg2-binary
+
