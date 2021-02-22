@@ -150,15 +150,21 @@ def fetchtickerdata():
 
     
 def positionstable():
+    newdict = {}
     tickerdict = fetchtickerdata()
- 
-    df = pd.DataFrame.from_dict(tickerdict)
+    with open("tradetracker.json", "w") as write_file:
+        json.dump(tickerdict, write_file,indent = 6, skipkeys = True)
+    write_file.close() 
+    with open("tradetracker.json","r") as read_file:
+        newdict = json.load(read_file)    
+    read_file.close()
+    df = pd.DataFrame.from_dict(newdict)
     return df.style
 
 @st.cache
 def wordcloud():
    
-   
+    
     with open("wordcloud.json", "r") as read_file:
         tickerdata = json.load(read_file)
     read_file.close()
