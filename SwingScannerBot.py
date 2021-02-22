@@ -166,7 +166,7 @@ def wordcloud():
    
     
     with open("wordcloud.json", "r") as read_file:
-        tickerdata = json.load(read_file)
+        tickerdata = json.loads(read_file)
     read_file.close()
     
     
