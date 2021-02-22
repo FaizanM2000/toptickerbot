@@ -120,20 +120,10 @@ def connect():
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
 
-
-# In[16]:
-
-
-
-
-
-# In[18]:
-
-
 def fetchtickerdata():
     tickerdata = {}
     
-   
+    
     conn = None
     try:
         params = config()
@@ -163,7 +153,7 @@ def positionstable():
     tickerdict = fetchtickerdata()
  
     df = pd.DataFrame.from_dict(tickerdict)
-    return df.head
+    df.head
 
 @st.cache
 def wordcloud():
