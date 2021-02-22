@@ -133,7 +133,7 @@ def connect():
 def fetchtickerdata():
     tickerdata = {}
     
-    """ query from the tickers table """
+   
     conn = None
     try:
         params = config()
@@ -163,7 +163,7 @@ def positionstable():
     tickerdict = fetchtickerdata()
  
     df = pd.DataFrame.from_dict(tickerdict)
-    return df
+    return df.head
 
 @st.cache
 def wordcloud():
