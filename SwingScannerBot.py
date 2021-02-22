@@ -152,7 +152,7 @@ def fetchtickerdata():
 def positionstable():
     newdict = {}
     tickerdict = fetchtickerdata()
-    with open("tradetracker.json", "w") as write_file:
+    with open("/tmp/tradetracker.json", "w") as write_file:
         json.dump(tickerdict, write_file,indent = 6, skipkeys = True)
     write_file.close() 
     with open("tradetracker.json","r") as read_file:
