@@ -153,7 +153,7 @@ def positionstable():
     tickerdict = fetchtickerdata()
  
     df = pd.DataFrame.from_dict(tickerdict)
-    df.head
+    return df.style
 
 @st.cache
 def wordcloud():
