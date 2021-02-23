@@ -150,17 +150,10 @@ def fetchtickerdata():
 
     
 def positionstable():
-    newdict = {}
+   
     tickerdict = fetchtickerdata()
-    print(tickerdict)
-    with open("/tmp/tradetracker.json", "w") as write_file:
-        json.dump(tickerdict, write_file,indent = 6, skipkeys = True)
-    write_file.close() 
-    with open("tradetracker.json","r") as read_file:
-        newdict = json.load(read_file)    
-    read_file.close()
     df = pd.DataFrame.from_dict(newdict)
-    return df.style
+    return df
 
 @st.cache
 def wordcloud():
@@ -191,8 +184,8 @@ st.write("You can also find financial social media analytics")
 st.write("\n")
 #st.markdown("<h1 style='text-align: center; color: black;'>Net Return: 43%</h1>", unsafe_allow_html=True)
 st.write("current holdings of the bot:")
-#st.table(positionstable())
-print(fetchtickerdata)
+connect()
+st.table(positionstable())
 st.write("positions are updated daily. Follow @toptickerbot on Twitter to get alerts and future updates")
 st.write("\n")
 col1, col2 =  st.beta_columns(2)
