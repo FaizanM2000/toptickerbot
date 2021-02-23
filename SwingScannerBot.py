@@ -119,7 +119,7 @@ def connect():
 	# close the communication with the PostgreSQL
         
     except (Exception, psycopg2.DatabaseError) as error:
-        st.wrire(error)
+        st.write(error)
 
 def fetchtickerdata():
     tickerdata = {}
