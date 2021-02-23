@@ -99,11 +99,11 @@ def connect():
     conn = None
     try:
         # read connection parameters
-        params = config()
+        #params = config()
 
         # connect to the PostgreSQL server
         st.write('Connecting to the PostgreSQL database...')
-        conn = psycopg2.connect(**params)
+        conn = psycopg2.connect(database = "tickerbase", user = "postgres", host = "localhost", password = "wVfhac5c")
 
         # create a cursor
         cur = conn.cursor()
