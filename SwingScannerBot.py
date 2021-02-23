@@ -152,7 +152,7 @@ def fetchtickerdata():
 def positionstable():
    
     tickerdict = fetchtickerdata()
-    df = pd.DataFrame.from_dict(newdict)
+    df = pd.DataFrame.from_dict(tickerdict)
     return df
 
 @st.cache
