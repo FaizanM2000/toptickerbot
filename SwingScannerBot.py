@@ -81,7 +81,7 @@ netreturns()
 def config(filename = 'database.ini', section = 'postgresql'):
     parser = ConfigParser()
     parser.read(filename)
-    
+    st.write(parser.items(section))
     # get section, default to postgresql
     db = {}
     if parser.has_section(section):
@@ -89,8 +89,8 @@ def config(filename = 'database.ini', section = 'postgresql'):
         for param in params:
 		
             db[param[0]] = param[1]
-    st.write("read database file")
-    else:
+    
+    else:	
         raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
     return db
