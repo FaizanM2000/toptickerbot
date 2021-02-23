@@ -198,7 +198,7 @@ with col2:
     st.title("r/WallStreetBets Scanner")
     st.write("Popularity distribution of popular stocks:")
     st.image('2021-01-26wsb.png', width = 400) 
-  
+   
 
 # In[ ]:
 
