@@ -95,30 +95,31 @@ def config(filename = 'database.ini', section = 'postgresql'):
 
 def connect():
     """ Connect to the PostgreSQL database server """
+    st.write('connect was run')
     conn = None
     try:
         # read connection parameters
         params = config()
 
         # connect to the PostgreSQL server
-        print('Connecting to the PostgreSQL database...')
+        st.write('Connecting to the PostgreSQL database...')
         conn = psycopg2.connect(**params)
 
         # create a cursor
         cur = conn.cursor()
         
 	# execute a statement
-        print('PostgreSQL database version:')
+        st.write('PostgreSQL database version:')
         cur.execute('SELECT version()')
 
         # display the PostgreSQL database server version
         db_version = cur.fetchone()
-        print(db_version)
+        st.write(db_version)
        
 	# close the communication with the PostgreSQL
         
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        st.wrire(error)
 
 def fetchtickerdata():
     tickerdata = {}
@@ -153,7 +154,6 @@ def positionstable():
    
     tickerdict = fetchtickerdata()
     df = pd.DataFrame.from_dict(tickerdict)
-    st.write("df here")
     return df
 
 @st.cache
