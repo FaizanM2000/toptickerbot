@@ -81,7 +81,6 @@ netreturns()
 def config(filename = 'database.ini', section = 'postgresql'):
     parser = ConfigParser()
     parser.read(filename)
-    st.write(parser.items(section))
     # get section, default to postgresql
     db = {}
     if parser.has_section(section):
