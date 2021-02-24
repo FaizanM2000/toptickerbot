@@ -186,32 +186,33 @@ st.write("You can also find financial social media analytics")
 st.write("\n")
 #st.markdown("<h1 style='text-align: center; color: black;'>Net Return: 43%</h1>", unsafe_allow_html=True)
 st.write("current holdings of the bot:")
- """ Connect to the PostgreSQL database server """
-    st.write('connect was run')
-    conn = None
-    try:
-        # read connection parameters
-        params = config()
+""" Connect to the PostgreSQL database server """
+st.write('connect was run')
+conn = None
+try:
 
-        # connect to the PostgreSQL server
-        st.write('Connecting to the PostgreSQL database...')
-        conn = psycopg2.connect(**params)
+	# read connection parameters
+	params = config()
 
-        # create a cursor
-        cur = conn.cursor()
-        
+	# connect to the PostgreSQL server
+	st.write('Connecting to the PostgreSQL database...')
+	conn = psycopg2.connect(**params)
+
+	# create a cursor
+	cur = conn.cursor()
+
 	# execute a statement
-        st.write('PostgreSQL database version:')
-        cur.execute('SELECT version()')
+	st.write('PostgreSQL database version:')
+	cur.execute('SELECT version()')
 
-        # display the PostgreSQL database server version
-        db_version = cur.fetchone()
-        st.write(db_version)
-       
+	# display the PostgreSQL database server version
+	db_version = cur.fetchone()
+	st.write(db_version)
+
 	# close the communication with the PostgreSQL
-        
-    except (Exception, psycopg2.DatabaseError) as error:
-        st.write(error)
+
+except (Exception, psycopg2.DatabaseError) as error:
+	st.write(error)
 st.table(positionstable())
 st.write("positions are updated daily. Follow @toptickerbot on Twitter to get alerts and future updates")
 st.write("\n")
