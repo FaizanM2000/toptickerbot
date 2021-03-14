@@ -87,10 +87,8 @@ read_file.close()
 collection_tickers.insert_one(volumedict)
 client.close()
 
+def getdata():
     
-
-    
- def getdata():
     documents = collection_tickers.find()
     response = {}
     for document in documents:
@@ -98,6 +96,7 @@ client.close()
     cache = response.pop('_id')
     df = pd.DataFrame.from_dict(response)
     return df
+    
 
 @st.cache
 def wordcloud():
