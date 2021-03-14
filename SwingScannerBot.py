@@ -14,9 +14,10 @@ import seaborn as sns
 import streamlit as st
 from wordcloud import WordCloud
 import warnings 
-import psycopg2#IMPORT TO STREAMLIT
-from configparser import ConfigParser
+import pymongo
+import dns
 import yfinance as yf
+
 
 
 # In[4]:
@@ -74,90 +75,28 @@ def netreturns():
     
 netreturns()   
 
+client = pymongo.MongoClient("mongodb+srv://adder:wVfhac5c@cluster0.osfgk.mongodb.net/toptickerbot?retryWrites=true&w=majority")
+db = client.test
+collection_tickers = db['bot_entries']
+with open("volumedict.json","r") as read_file:
+    volumedict = json.load(read_file)
+read_file.close()
 
-# In[7]:
 
 
-def config(filename = 'database.ini', section = 'postgresql'):
-    parser = ConfigParser()
-    parser.read(filename)
-    # get section, default to postgresql
-    db = {}
-    if parser.has_section(section):
-        params = parser.items(section)
-        for param in params:
-		
-            db[param[0]] = param[1]
-    
-    else:	
-        raise Exception('Section {0} not found in the {1} file'.format(section, filename))
+collection_tickers.insert_one(volumedict)
+client.close()
 
-    return db
-
-def connect():
-    """ Connect to the PostgreSQL database server """
-    st.write('connect was run')
-    conn = None
-    try:
-        # read connection parameters
-        params = config()
-
-        # connect to the PostgreSQL server
-        st.write('Connecting to the PostgreSQL database...')
-        conn = psycopg2.connect(**params)
-
-        # create a cursor
-        cur = conn.cursor()
-        
-	# execute a statement
-        st.write('PostgreSQL database version:')
-        cur.execute('SELECT version()')
-
-        # display the PostgreSQL database server version
-        db_version = cur.fetchone()
-        st.write(db_version)
-       
-	# close the communication with the PostgreSQL
-        
-    except (Exception, psycopg2.DatabaseError) as error:
-        st.write(error)
-
-def fetchtickerdata():
-    tickerdata = {}
-    
-    
-    conn = None
-    try:
-        params = config()
-        conn = psycopg2.connect(**params)
-        cur = conn.cursor()
-        cur.execute("SELECT ticker, alerted_price, entrytime FROM tickertracker ")
-        rows = cur.fetchall()
-        cur.close()
-        for row in rows:
-            newdict = {}
-            newdict["alerted price"] = row[1]
-            newdict["date of entry"] = str(row[2])
-            ticker = yf.Ticker(row[0].replace(" ",""))
-            newdict["current price"] = ticker.info['ask']
-            tickerdata[row[0].replace(" ","")] = newdict
-        return tickerdata
-        
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-    finally:
-        if conn is not None:
-            conn.close()
     
 
     
-def positionstable():
-   
-    #tickerdict = fetchtickerdata()
-    with open("volumedict.json","r") as read_file:
-        volumedict = json.load(read_file)
-    read_file.close()
-    df = pd.DataFrame.from_dict(volumedict)
+ def getdata():
+    documents = collection_tickers.find()
+    response = {}
+    for document in documents:
+        response.update(document)
+    cache = response.pop('_id')
+    df = pd.DataFrame.from_dict(response)
     return df
 
 @st.cache
@@ -189,7 +128,7 @@ st.write("You can also find financial social media analytics")
 st.write("\n")
 #st.markdown("<h1 style='text-align: center; color: black;'>Net Return: 43%</h1>", unsafe_allow_html=True)
 st.write("current holdings of the bot:")
-st.table(positionstable())
+st.table(getdata())
 st.write("positions are updated daily. Follow @toptickerbot on Twitter to get alerts and future updates")
 st.write("\n")
 col1, col2 =  st.beta_columns(2)
