@@ -7,5 +7,5 @@ psycopg2-binary
 configparser
 yfinance 
 pymongo
-dns
+
 
