@@ -15,7 +15,7 @@ import streamlit as st
 from wordcloud import WordCloud
 import warnings 
 import pymongo
-import dns
+#import dns
 import yfinance as yf
 
 
