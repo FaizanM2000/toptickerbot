@@ -73,22 +73,13 @@ def netreturns():
     
     print(net)
     
-netreturns()   
-
-client = pymongo.MongoClient("mongodb+srv://adder:wVfhac5c@cluster0.osfgk.mongodb.net/toptickerbot?retryWrites=true&w=majority")
-db = client.test
-collection_tickers = db['bot_entries']
-with open("volumedict.json","r") as read_file:
-    volumedict = json.load(read_file)
-read_file.close()
 
 
-
-collection_tickers.insert_one(volumedict)
-client.close()
 
 def getdata():
-    
+    client = pymongo.MongoClient("mongodb+srv://adder:wVfhac5c@cluster0.osfgk.mongodb.net/toptickerbot?retryWrites=true&w=majority")
+    db = client.test
+    collection_tickers = db['bot_entries']
     documents = collection_tickers.find()
     response = {}
     for document in documents:
@@ -97,16 +88,20 @@ def getdata():
     df = pd.DataFrame.from_dict(response)
     return df
     
+def getwsbdata():
+    client = pymongo.MongoClient("mongodb+srv://adder:wVfhac5c@cluster0.osfgk.mongodb.net/toptickerbot?retryWrites=true&w=majority")
+    db = client.test
+    collection_tickers = db['wsb_cloud']
+    documents = collection_tickers.find()
+    response = {}
+    for document in documents:
+        response.update(document)
+    cache = response.pop('_id')
+    return response
 
 @st.cache
 def wordcloud():
-   
-    
-    with open("wordcloud.json", "r") as read_file:
-        tickerdata = json.load(read_file)
-    read_file.close()
-    
-    
+    tickerdata = getwsbdata()
     tickerkeys = list(tickerdata.keys())
     wc = WordCloud(background_color="white",width=5000,height=5000, max_words=len(tickerkeys),relative_scaling=0.5,min_font_size=5).generate_from_frequencies(tickerdata)
     plt.axis('off')
