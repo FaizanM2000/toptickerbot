@@ -127,12 +127,12 @@ st.write("positions are updated daily. Follow @toptickerbot on Twitter to get al
 st.write("\n")
 col1, col2 =  st.beta_columns(2)
 with col1:
-    st.title("twitter data analytics ")
-    st.write("most talked about 50 S&P 500 tickers and some popular ones:")
-    st.image(wordcloud().to_array(),width = 350)
-with col2:
     st.title("r/WallStreetBets Scanner")
     st.write("Popularity distribution of popular stocks:")
+    st.image(wordcloud().to_array(),width = 350)
+with col2:
+    st.title("twitter data analytics ")
+    st.write("most talked about 50 S&P 500 tickers and some popular ones:")
     st.image('2021-01-26wsb.png', width = 400) 
    
   
