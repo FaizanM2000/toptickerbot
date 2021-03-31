@@ -116,7 +116,7 @@ def date():
 
 
 st.set_page_config( layout='wide')
-st.markdown("<h1 style='text-align: center; color: black;'>Top ticker bot- An Accumulation Scanning Bot and Social Media Analyst</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: white;'>Top ticker bot- An Accumulation Scanning Bot and Social Media Analyst</h1>", unsafe_allow_html=True)
 st.write("Bot that looks for stocks showing accumulation or high explosive potential from price and volume patterns ")
 st.write("You can also find financial social media analytics")
 st.write("\n")
