@@ -85,6 +85,7 @@ def getdata():
     for document in documents:
         response.update(document)
     cache = response.pop('_id')
+    cache = response.pop('tweeturl')
     df = pd.DataFrame.from_dict(response)
     return df
     
