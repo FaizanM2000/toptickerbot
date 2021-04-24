@@ -84,6 +84,7 @@ def getdata():
     response = {}
     for document in documents:
         response.update(document)
+    cache = response.pop('_id')
     df = pd.DataFrame.from_dict(response)
     return df
     
