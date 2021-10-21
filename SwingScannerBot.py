@@ -90,7 +90,7 @@ def getdata():
     df = pd.DataFrame.from_dict(response)
     df = df.astype(str)
     
-    #return df
+    return df
     
 def getwsbdata():
     client = pymongo.MongoClient("mongodb+srv://adder:wVfhac5c@cluster0.osfgk.mongodb.net/toptickerbot?retryWrites=true&w=majority")
