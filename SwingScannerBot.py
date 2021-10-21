@@ -86,10 +86,9 @@ def getdata():
         response.update(document)
     cache = response.pop('_id')
     keys = response.keys()
-    for i in keys:
-        st.write(i)
-        
+    
     df = pd.DataFrame.from_dict(response)
+    df = df.astype(str)
     
     #return df
     
