@@ -87,7 +87,7 @@ def getdata():
     cache = response.pop('_id')
     keys = response.keys()
     for i in keys:
-        print(i)
+        st.write(i)
         
     df = pd.DataFrame.from_dict(response)
     
