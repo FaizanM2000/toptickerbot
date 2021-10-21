@@ -85,6 +85,9 @@ def getdata():
     for document in documents:
         response.update(document)
     cache = response.pop('_id')
+    keys = response.keys()
+    for i in keys:
+        st.write(type(response[i])
     df = pd.DataFrame.from_dict(response)
     return df
     
